@@ -1,4 +1,4 @@
-package org.example.task-2;
+package org.example.task2;
 
 import javax.ws.rs.ApplicationPath;
 import javax.ws.rs.core.Application;

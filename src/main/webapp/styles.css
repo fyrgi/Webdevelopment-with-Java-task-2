@@ -1,0 +1,180 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #aae5d7;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+h2 {
+    margin-left: auto;
+    margin-right: auto;
+    width: 500px;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    color: midnightblue;
+    font-weight: bold ;
+}
+.center {
+    margin: auto;
+    width: 100%;
+    padding: 10px;
+}
+.topnav {
+    margin-top: 20px;
+    width: 1300px;
+}
+
+.current {
+    background-color: yellow;
+}
+
+.current:hover {
+    background-color: yellow;
+}
+
+a {
+    border: 3px solid green;
+    background-color: aquamarine;
+    text-decoration: none;
+    margin-left: 10px;
+    padding: 20px;
+    border-radius: 25px;
+    font-size: 15px;
+    width: 100px;
+    color: midnightblue;
+}
+
+a:visited {
+    color: midnightblue;
+}
+
+a:hover {
+    border: 3px solid midnightblue;
+    background-color: aqua;
+}
+
+
+.view {
+    border-collapse: collapse;
+    width: 80%;
+    margin-left: 120px;
+    border-radius: 60px;
+    margin-bottom: 40px;
+}
+
+.view td, .view th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+th:first-of-type {
+    border-top-left-radius: 10px;
+}
+th:last-of-type {
+    border-top-right-radius: 10px;
+}
+tr:last-of-type td:first-of-type {
+    border-bottom-left-radius: 10px;
+}
+tr:last-of-type td:last-of-type {
+    border-bottom-right-radius: 10px;
+}
+
+.view tr:nth-child(even){
+    background-color: rgba(201, 179, 246, 0.84);
+}
+
+.view tr:nth-child(odd){
+    background-color: rgba(246, 227, 179, 0.84);
+}
+
+.view tr:hover {
+    background-color: midnightblue;
+    color: white;
+}
+
+.view th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #491aa2;
+    color: white;
+}
+
+.view th a {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    padding-left: 0;
+    margin-left: 0;
+    text-align: left;
+    background-color: #491aa2;
+    color: white;
+    border: none;
+}
+.view th a:hover {background-color: midnightblue;}
+
+.studentCoursesForm {
+    padding:5px;
+    display: inline;
+    margin: auto;
+}
+.newStudentForm {
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+    width: 400px;
+    border: 3px solid green;
+    border-radius: 10px;
+}
+.studentCoursesForm input label{
+    float: left;
+    margin: 5px;
+}
+.studentCoursesForm input {
+    padding: 10px;
+    border-radius: 7px;
+    font-size: 16px;
+    border: 1px solid green;
+    background-color: aquamarine;
+    color: midnightblue;
+}
+
+.studentCoursesForm label{
+    color: midnightblue;
+}
+
+.submBttn{
+    cursor: pointer;
+    color: midnightblue;
+}
+
+.reset {
+    display:inline;
+    margin-left:auto;
+    margin-right:auto;
+    margin-top:5px;
+    margin-bottom:5px;
+    padding:5px;
+    padding: 10px;
+    border-radius: 7px;
+    font-size: 16px;
+    border: 1px solid green;
+    background-color: aquamarine;
+    cursor: pointer;
+    color: midnightblue;
+}
+.resetNewLine {
+    display:block;
+    margin-left:auto;
+    margin-right:auto;
+    margin-top:5px;
+    margin-bottom:5px;
+    padding:5px;
+    padding: 10px;
+    border-radius: 7px;
+    font-size: 16px;
+    border: 1px solid green;
+    background-color: aquamarine;
+    cursor: pointer;
+    color: midnightblue;
+}

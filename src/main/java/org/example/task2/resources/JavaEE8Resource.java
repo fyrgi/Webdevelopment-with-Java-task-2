@@ -1,4 +1,4 @@
-package org.example.task-2.resources;
+package org.example.task2.resources;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;

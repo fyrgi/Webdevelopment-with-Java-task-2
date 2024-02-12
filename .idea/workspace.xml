@@ -4,15 +4,47 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="8eb37c4c-3927-4f62-8d1b-0a5301e5b703" name="Changes" comment="" />
+    <list default="true" id="8eb37c4c-3927-4f62-8d1b-0a5301e5b703" name="Changes" comment="In the registration list a table of all students is added. When an existing student id is written a table only with that students current courses is replacing the previous table. The field with the student ID nullates only on Reset.">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/models/DBConnector.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/models/DBConnector.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/models/queries.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/models/queries.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/task2/JAXRSConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/task2/JAXRSConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/task2/resources/JavaEE8Resource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/task2/resources/JavaEE8Resource.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/servlets/AddCourse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/servlets/AddCourse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/servlets/AddStudent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/servlets/AddStudent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/servlets/AddStudentInCourse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/servlets/AddStudentInCourse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/servlets/ShowCourses.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/servlets/ShowCourses.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/servlets/ShowCoursesForStudent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/servlets/ShowCoursesForStudent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/servlets/ShowStudentInCourses.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/servlets/ShowStudentInCourses.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/servlets/ShowStudents.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/servlets/ShowStudents.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/webapp/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/styles.css" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 7
-}]]></component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="CSS File" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="JavaAutoRunManager">
+    <enabled-run-configurations>
+      <run-configuration type="MavenRunConfiguration" name="task-2 [org.apache.tomcat.maven:tomcat7-maven-plugin:2.2:run]" />
+    </enabled-run-configurations>
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 7
+}</component>
   <component name="ProjectId" id="2bobPsuObDA40saeRMBpuuQxEwg" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
@@ -23,7 +55,15 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "master",
+    "list.type.of.created.stylesheet": "CSS",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "settings.editor.selected.configurable": "editor.preferences.fonts.default",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -35,8 +75,21 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1706884360739</updated>
-      <workItem from="1706884361860" duration="4000" />
+      <workItem from="1706884361860" duration="1968000" />
+      <workItem from="1707373832909" duration="2988000" />
+      <workItem from="1707379477844" duration="47772000" />
     </task>
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="In the registration list a table of all students is added. When an existing student id is written a table only with that students current courses is replacing the previous table. The field with the student ID nullates only on Reset." />
+    <option name="LAST_COMMIT_MESSAGE" value="In the registration list a table of all students is added. When an existing student id is written a table only with that students current courses is replacing the previous table. The field with the student ID nullates only on Reset." />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

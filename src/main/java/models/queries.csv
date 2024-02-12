@@ -1,0 +1,9 @@
+showStudents;SELECT id, f_name, l_name, city, interests FROM students;gritacademy;localhost;13306;user;user
+showRegistrationsWithId;SELECT s.id, CONCAT(s.f_name,' ', s.l_name) AS student_name, c.name, c.points FROM student_course AS sc LEFT JOIN students AS s ON sc.id_student = s.id LEFT JOIN courses AS c ON sc.id_course = c.id WHERE s.f_name='{0}' AND s.l_name='{1}' AND s.id='{2}' ORDER BY c.name ASC;gritacademy;localhost;13306;user;user
+showRegistrationsName;SELECT s.id, CONCAT(s.f_name,' ', s.l_name) AS student_name, c.name, c.points FROM student_course AS sc LEFT JOIN students AS s ON sc.id_student = s.id LEFT JOIN courses AS c ON sc.id_course = c.id WHERE s.f_name='{0}' AND s.l_name='{1}' ORDER BY student_name ASC, s.id ASC;gritacademy;localhost;13306;user;user
+showRegistrationsIdOnly;SELECT s.id, CONCAT(s.f_name,' ', s.l_name) AS student_name, c.name, c.points FROM student_course AS sc LEFT JOIN students AS s ON sc.id_student = s.id LEFT JOIN courses AS c ON sc.id_course = c.id WHERE s.id='{0}' ORDER BY c.name ASC;gritacademy;localhost;13306;user;user
+addNewStudent;INSERT INTO students (f_name, l_name, city, interests) VALUES (?,?,?,?);gritacademy;localhost;13306;insertUser;user
+addNewCourse;INSERT INTO courses (name, points, description) VALUES (?,?,?);gritacademy;localhost;13306;insertUser;user
+showAvailableCourses1; SELECT * FROM courses AS c WHERE c.id NOT IN (SELECT id_course FROM student_course AS sc WHERE sc.id_student = '{0}' AND sc.id_student IN (SELECT name FROM students)) ORDER BY c.name ASC;gritacademy;localhost;13306;user;user
+showAvailableCourses; SELECT * FROM courses AS c WHERE c.id NOT IN (SELECT id_course FROM student_course AS sc WHERE sc.id_student = '{0}' ) AND '{0}' IN (SELECT id FROM students) ORDER BY c.name ASC;gritacademy;localhost;13306;user;user
+registerStudentInCourse;INSERT INTO student_course (id_student , id_course) VALUES (?,?);gritacademy;localhost;13306;insertUser;user
