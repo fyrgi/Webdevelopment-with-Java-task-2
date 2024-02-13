@@ -43,7 +43,7 @@ public class ShowStudentInCourses extends HttpServlet {
                 sql = sql + "SELECT s.id, CONCAT(s.f_name,' ', s.l_name) AS student_name, c.name, c.points FROM student_course AS sc LEFT JOIN students AS s ON sc.id_student = s.id LEFT JOIN courses AS c ON sc.id_course = c.id ORDER BY student_name ASC, s.id ASC";
             }
             ResultSet rs = stmt.executeQuery(sql);
-            row = row + "<table class=\"view\"><tr><th>Student id</th><th><a class=\"sort\" href=\"students-in-courses?sort=student\">Student name &#9660</a></th><th><a class=\"sort\" href=\"students-in-courses?sort=course\">Course &#9660</a></th><th>Points</th></tr>";
+            row = row + "<table class=\"view\"><tr><th>Student id</th><th><a class=\"sort\" href=\"student-registrations?sort=student\">Student name &#9660</a></th><th><a class=\"sort\" href=\"student-registrations?sort=course\">Course &#9660</a></th><th>Points</th></tr>";
             while (rs.next()){
                 row = row +"<tr><td>"+rs.getInt(1)+"</td><td>"+rs.getString(2)+"</td><td>"+rs.getString(3)+"</td><td>"+rs.getString(4)+"</td></tr>";
             }

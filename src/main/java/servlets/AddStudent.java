@@ -12,28 +12,41 @@ import java.util.LinkedList;
 
 @WebServlet(urlPatterns = "/add-student")
 public class AddStudent extends HttpServlet {
-    // we use 2 sets of result table headers. The main one that comes from students, and it is the default one
-    // and another one for the result which shows the courses.
-    private String tableHeaders = "<tr><th>ID</th><th>First name</th><th>Last name</th><th>City</th><th>Interests</th></tr>";
+    String errorMsg = "";
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         showHeader(req, resp);
+        PrintWriter out = resp.getWriter();
+        if(!errorMsg.isEmpty()){
+            out.println("<p class=error>"+errorMsg+"</p>");
+            errorMsg="";
+        }
         showForm(req, resp);
-        System.out.println(req.getParameter("lname"));
-        System.out.println(req.getParameter("fname"));
-        System.out.println(req.getParameter("city"));
-        System.out.println(req.getParameter("interests"));
         // Here we have to determine which insert query we will use
-        if(!req.getParameter("fname").isEmpty() && !req.getParameter("lname").isEmpty()){
+        if((!req.getParameter("fname").isEmpty() && req.getParameter("fname").length()>1) && (!req.getParameter("lname").isEmpty() && req.getParameter("lname").length()>1)){
             try {
                 DBConnector.getConnector().insertQuery("addNewStudent", req.getParameter("fname"), req.getParameter("lname"), req.getParameter("city"), req.getParameter("interests"), "S","S","S","S");
                 resp.sendRedirect(req.getContextPath() + "/all-students");
             }catch (NumberFormatException e){
-                System.out.println(e);
+                errorMsg = "No connection with the database";
             }
         } else {
             //TODO write the missing field message.
-            System.out.println("Missing name fields");
+            if(req.getParameter("fname").isEmpty() && req.getParameter("lname").isEmpty()){
+                errorMsg = "First name and Last name must be filled!<br>";
+            } else if (req.getParameter("fname").isEmpty() && !req.getParameter("lname").isEmpty()){
+                errorMsg = "Missing first name!<br>";
+            } else if (!req.getParameter("fname").isEmpty() && req.getParameter("lname").isEmpty()){
+                errorMsg = "Missing last name!<br>";
+            }
+
+            if (req.getParameter("fname").length() < 2 && req.getParameter("lname").length() < 2) {
+                errorMsg += "The provided names are too short. Minimum 2 symbols.<br>";
+            }else if (req.getParameter("fname").length() < 2 && req.getParameter("lname").length() > 1) {
+                errorMsg += "The first name is too short. Minimum 2 symbols.<br>";
+            }else if (req.getParameter("fname").length() > 1 && req.getParameter("lname").length() < 2) {
+                errorMsg += "The last name is too short. Minimum 2 symbols.<br>";
+            }
         }
     }
 
@@ -72,10 +85,10 @@ public class AddStudent extends HttpServlet {
     }
     private void showHeader(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         PrintWriter out = resp.getWriter();
-        out.println("<head><link rel=\"stylesheet\" href=\"styles.css\"><title>Courses for student</title>"
+        out.println("<head><link rel=\"stylesheet\" href=\"styles.css\"><title>Add student</title>"
                 + "</head>"
                 + "<body>"
                 + "<div class=\"topnav center\"><a class=\"active\" href=\"/index.html\">Home</a>&nbsp<a href=\"/all-students\">Show Students</a>&nbsp<a href=\"/add-student\" class=\"current\">Add Student</a>&nbsp<a href=\"/show-courses-for-student\" >Show Courses for student</a>&nbsp<a href=\"/all-courses\">Show Courses</a>&nbsp<a href=\"/add-courses\">Add Course</a>&nbsp<a href=\"/student-registrations\">Registration list</a>&nbsp<a href=\"/register-student\">Register student</a>&nbsp</div>"
-                + "<h2>Show classes for a specific person</h2>");
+                + "<h2>Add new student</h2>");
     }
 }

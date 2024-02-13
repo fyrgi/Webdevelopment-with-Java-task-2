@@ -113,39 +113,10 @@ tr:last-of-type td:last-of-type {
 }
 .view th a:hover {background-color: midnightblue;}
 
-.studentCoursesForm {
-    padding:5px;
-    display: inline;
-    margin: auto;
-}
-.newStudentForm {
-    display: block;
-    margin-right: auto;
-    margin-left: auto;
-    width: 400px;
-    border: 3px solid green;
-    border-radius: 10px;
-}
-.studentCoursesForm input label{
-    float: left;
-    margin: 5px;
-}
-.studentCoursesForm input {
-    padding: 10px;
-    border-radius: 7px;
-    font-size: 16px;
-    border: 1px solid green;
-    background-color: aquamarine;
-    color: midnightblue;
-}
-
-.studentCoursesForm label{
-    color: midnightblue;
-}
-
 .submBttn{
     cursor: pointer;
     color: midnightblue;
+    width: 200px;
 }
 
 .reset {
@@ -162,6 +133,7 @@ tr:last-of-type td:last-of-type {
     background-color: aquamarine;
     cursor: pointer;
     color: midnightblue;
+    width: 200px;
 }
 .resetNewLine {
     display:block;
@@ -177,4 +149,50 @@ tr:last-of-type td:last-of-type {
     background-color: aquamarine;
     cursor: pointer;
     color: midnightblue;
+    width: 200px;
+}
+
+.studentCoursesForm {
+    padding:5px;
+    display: inline;
+    margin: auto;
+    width: 600px;
+}
+
+.studentCoursesForm input label{
+    float: left;
+    margin: 5px;
+}
+
+.newStudentForm {
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+    width: 410px;
+    border: 3px solid green;
+    border-radius: 10px;
+}
+.studentCoursesForm input {
+    padding: 10px;
+    border-radius: 7px;
+    font-size: 16px;
+    border: 1px solid green;
+    background-color: aquamarine;
+    color: midnightblue;
+    width: 400px;
+}
+
+.studentCoursesForm label{
+    color: midnightblue;
+    width: 100px;
+}
+
+.error{
+    color: red;
+    border: 2px solid red;
+    width: 410px;
+    margin-right: auto;
+    margin-left: auto;
+    padding: 5px;
+    border-radius: 7px;
 }

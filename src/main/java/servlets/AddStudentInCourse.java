@@ -19,7 +19,7 @@ public class AddStudentInCourse extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         showHeader(req, resp);
         showForm(req, resp);
-        //showDataTable(req, resp, DBConnector.getConnector().selectQuery("showAvailableCourses",idStudent));
+        // determine from which function is the Post made, so it could show the right information.
         String id = req.getParameter("id");
         String courseId = req.getParameter("idCourse");
         if(id != null && !id.isEmpty()){
