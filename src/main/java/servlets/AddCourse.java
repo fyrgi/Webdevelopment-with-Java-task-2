@@ -16,16 +16,22 @@ public class AddCourse extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         showHeader(req, resp);
         showForm(req, resp);
-        if(!req.getParameter("name").isEmpty() && !req.getParameter("points").isEmpty()){
-            try {
-                DBConnector.getConnector().insertQuery("addNewCourse", req.getParameter("name"),req.getParameter("points"),req.getParameter("description"),"S","I","S");
-                resp.sendRedirect(req.getContextPath() + "/all-courses");
-            }catch (NumberFormatException e){
-                System.out.println(e);
-            }
+        PrintWriter out = resp.getWriter();
+        String name = req.getParameter("name");
+        String points = req.getParameter("points");
+        if(!name.isEmpty() && !points.isEmpty()){
+            DBConnector.getConnector().insertQuery("addNewCourse", name,points,req.getParameter("description"),"S","I","S");
+            resp.sendRedirect(req.getContextPath() + "/all-courses");
         } else {
-            //TODO write the missing field message.
-            System.out.println("Missing name fields");
+            if(!name.isEmpty() && points.isEmpty()){
+                out.println("<p class=error>Missing value for course points!</p>");
+            } else if(name.isEmpty() && !points.isEmpty()){
+                out.println("<p class=error>Missing value for course name!</p>");
+            } else if(name.isEmpty() && points.isEmpty()){
+                out.println("<p class=error>Name and points must be filled!!</p>");
+            } else {
+                out.println("<p class=error>Error! Contact you system administrator!</p>");
+            }
         }
     }
 
@@ -34,6 +40,7 @@ public class AddCourse extends HttpServlet {
         showHeader(req, resp);
         showForm(req, resp);
     }
+
     private void showForm(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         PrintWriter out = resp.getWriter();
         String name = req.getParameter("name") == null ? "" : req.getParameter("name");
@@ -41,22 +48,22 @@ public class AddCourse extends HttpServlet {
         String description = req.getParameter("description") == null ? "" : req.getParameter("description");
 
         out.println(
-                "<br>"
-                        + "<div class=\"newStudentForm studentCoursesForm\">"
-                        + "<form style='margin:5px;' action=/add-courses method=POST>"
-                        + "            <label for=name>Course Name:</label>"
-                        + "            <input type=text id=name name=name value=" + name + "><br/><br/>"
-                        + "            <label for=points>Points:</label>"
-                        + "            <input type=number id=points name=points min=\"10\" value=" + points + "><br/><br/>"
-                        + "            <label for=description>Description:</label>"
-                        + "            <input type=text id=description name=description value=" + description + "><br/><br/>"
-                        + "            <input class=\"submBttn\" type=submit value=Submit>"
-                        + "            <input class=reset id=reset type=reset value=Cancel  onclick=location.href='/add-courses'></div>"
-                        + "        </form>"
-                        + "</div>"
-                        + "</body></html>"
+            "<br>"
+                + "<div class=\"newStudentForm studentCoursesForm\">"
+                + "<form style='margin:5px;' action=/add-courses method=POST>"
+                + "     <label for=name>Course Name:</label>"
+                + "     <input type=text id=name name=name value=" + name + "><br/><br/>"
+                + "     <label for=points>Points:</label>"
+                + "     <input type=number id=points name=points min=\"10\" value=" + points + "><br/><br/>"
+                + "     <label for=description>Description:</label>"
+                + "     <input type=text id=description name=description value=" + description + "><br/><br/>"
+                + "     <input class=\"submBttn\" type=submit value=Submit>"
+                + "     <input class=reset id=reset type=reset value=Cancel  onclick=location.href='/add-courses'></div>"
+                + "</form>"
+                + "</div></body></html>"
         );
     }
+
     private void showHeader(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         PrintWriter out = resp.getWriter();
         out.println("<head><link rel=\"stylesheet\" href=\"styles.css\"><title>Add new course</title>"

@@ -15,26 +15,38 @@ public class ShowCoursesForStudent extends HttpServlet {
     // we use 2 sets of result table headers. The main one that comes from students, and it is the default one
     // and another one for the result which shows the courses.
     private String tableHeaders = "<tr><th>ID</th><th>First name</th><th>Last name</th><th>City</th><th>Interests</th></tr>";
+    private String errorMsg = "";
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         showHeader(req, resp);
+        PrintWriter out = resp.getWriter();
+
         showForm(req, resp);
-        if(!req.getParameter("id").isEmpty() && (!req.getParameter("fname").isEmpty() && !req.getParameter("lname").isEmpty())){
-            try {
-                tableHeaders = "<tr><th>ID</th><th>Student</th><th>Course</th><th>Points</th></tr>";
-                showDataTable(req, resp, DBConnector.getConnector().selectQuery("showRegistrationsWithId", req.getParameter("fname"), req.getParameter("lname"), req.getParameter("id")));
-            }catch (NumberFormatException e){
-                System.out.println(e);
-            }
-        } else if(!req.getParameter("id").isEmpty() && (req.getParameter("fname").isEmpty() && req.getParameter("lname").isEmpty())) {
+        String id = req.getParameter("id");
+        String fname = req.getParameter("fname");
+        String lname = req.getParameter("lname");
+        if(!id.isEmpty() && (!fname.isEmpty() && !lname.isEmpty())){
+            tableHeaders = "<tr><th>ID</th><th>Student</th><th>Course</th><th>Points</th></tr>";
+            showDataTable(req, resp, DBConnector.getConnector().selectQuery("showRegistrationsWithId", req.getParameter("fname"), req.getParameter("lname"), req.getParameter("id")));
+        } else if(!id.isEmpty() && fname.isEmpty() && lname.isEmpty()){
             tableHeaders = "<tr><th>ID</th><th>Student</th><th>Course</th><th>Points</th></tr>";
             showDataTable(req, resp, DBConnector.getConnector().selectQuery("showRegistrationsIdOnly", req.getParameter("id")));
-        } else if(req.getParameter("id").isEmpty() && (!req.getParameter("fname").isEmpty() && !req.getParameter("lname").isEmpty())){
+        } else if(id.isEmpty() && (!fname.isEmpty() && !lname.isEmpty())){
             tableHeaders = "<tr><th>ID</th><th>Student</th><th>Course</th><th>Points</th></tr>";
             showDataTable(req, resp, DBConnector.getConnector().selectQuery("showRegistrationsName", req.getParameter("fname"), req.getParameter("lname")));
         } else {
-            //TODO write the missing field message.
-            System.out.println("Missing field");
+            if((fname.isEmpty() && !lname.isEmpty()) || (!fname.isEmpty() && lname.isEmpty())){
+                errorMsg = "Both names should be filled";
+                if(!errorMsg.isEmpty()){
+                    out.println("<p class=error>"+errorMsg+"</p>");
+                    errorMsg="";
+                }
+                tableHeaders = "<tr><th>ID</th><th>First name</th><th>Last name</th><th>City</th><th>Interests</th></tr>";
+                showDataTable(req, resp, DBConnector.getConnector().selectQuery("showStudents"));
+            } else if(fname.isEmpty() && lname.isEmpty() && id.isEmpty()) {
+                tableHeaders = "<tr><th>ID</th><th>First name</th><th>Last name</th><th>City</th><th>Interests</th></tr>";
+                showDataTable(req, resp, DBConnector.getConnector().selectQuery("showStudents"));
+            }
         }
     }
 
@@ -67,7 +79,7 @@ public class ShowCoursesForStudent extends HttpServlet {
                 out.println("</tr>");
             }
         } else {
-            out.println("<tr><td colspan=\"4\"> The student is not signed upf for any courses.</td></tr>");
+            out.println("<tr><td colspan=\"4\"> The student is not signed up for any courses or does not exist.</td></tr>");
         }
         out.println(bottom);
     }
@@ -87,8 +99,8 @@ public class ShowCoursesForStudent extends HttpServlet {
                 + "            <label for=fname>Last Name:</label>"
                 + "            <input type=text id=lname name=lname value="+lName+" >"
                 + "            <label for=_id>Student id:</label>"
-                + "            <input type=text id=_id name=id value="+id+">"
-                + "            <input class=\"submBttn\" type=submit value=Submit>"
+                + "            <input type=text id=_id name=id value="+id+"><br><br>"
+                + "            <input class=\"submBttn\" id=\"centeredBttn\" type=submit value=Search></a>"
                 + "        </form>"
                 + "</div>"
                 + "<br>"

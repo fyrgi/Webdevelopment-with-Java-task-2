@@ -12,7 +12,7 @@ import java.util.LinkedList;
 
 @WebServlet(urlPatterns = "/add-student")
 public class AddStudent extends HttpServlet {
-    String errorMsg = "";
+    private String errorMsg = "";
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         showHeader(req, resp);
@@ -31,7 +31,6 @@ public class AddStudent extends HttpServlet {
                 errorMsg = "No connection with the database";
             }
         } else {
-            //TODO write the missing field message.
             if(req.getParameter("fname").isEmpty() && req.getParameter("lname").isEmpty()){
                 errorMsg = "First name and Last name must be filled!<br>";
             } else if (req.getParameter("fname").isEmpty() && !req.getParameter("lname").isEmpty()){

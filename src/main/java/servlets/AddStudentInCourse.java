@@ -14,17 +14,28 @@ import java.util.LinkedList;
 public class AddStudentInCourse extends HttpServlet {
 
     private String idStudent = "";
-    String tableHeaders = "<tr><th>ID</th><th>First name</th><th>Last name</th><th>City</th><th>Interests</th></tr>";
+    private String studentData;
+    private String tableHeaders = "<tr><th>ID</th><th>First name</th><th>Last name</th><th>City</th><th>Interests</th></tr>";
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         showHeader(req, resp);
         showForm(req, resp);
+        PrintWriter out = resp.getWriter();
         // determine from which function is the Post made, so it could show the right information.
         String id = req.getParameter("id");
         String courseId = req.getParameter("idCourse");
         if(id != null && !id.isEmpty()){
             idStudent = req.getParameter("id");
             showDataDropDownCourses(req, resp, DBConnector.getConnector().selectQuery("showAvailableCourses",idStudent));
+            // Get the data for the chosen student to present to the viewer.
+            LinkedList<String[]> data = DBConnector.getConnector().selectQuery("showSelectedStudent", idStudent);
+            if(data.size()<2){
+                studentData = "No student with id " + idStudent + " can be found in the database.";
+            } else {
+                String[] dataset = data.get(1);
+                studentData = "You are currently looking data for " + dataset[1] + " with id " + dataset[0];
+            }
+            out.println("<h4>"+studentData+"</h4>");
             tableHeaders = "<tr><th>ID</th><th>Student</th><th>Course</th><th>Points</th></tr>";
             showDataTable(req, resp, DBConnector.getConnector().selectQuery("showRegistrationsIdOnly", idStudent));
         } else if (courseId != null && !courseId.isEmpty() && !idStudent.isEmpty()){
@@ -77,6 +88,7 @@ public class AddStudentInCourse extends HttpServlet {
         // The stream returns 1st row as the headers. In order to not show it is skipped.
         // if it is only one row as result then there is no data from the search and a message will be displayed
         if(data.size()>1){
+
             for(int i = 1; i<data.size(); i++){
                 out.println("<tr>");
                 Arrays.stream(data.get(i)).forEach(dataPoint -> {

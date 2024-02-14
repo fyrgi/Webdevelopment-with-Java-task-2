@@ -31,6 +31,7 @@ public class ShowStudentInCourses extends HttpServlet {
             String sort = "";
             try{
                 sort = request.getParameter("sort");
+                //if I remove the next line I get an error and my table is not shown.
                 System.out.println(sort.getClass());
             } catch (Exception e){
                 sort = "";
@@ -54,11 +55,10 @@ public class ShowStudentInCourses extends HttpServlet {
         }
 
         PrintWriter out = response.getWriter();
-        String html ="<html><head><link rel=\"stylesheet\" href=\"styles.css\"><title>Home page</title></head><body>"
+        String html ="<html><head><link rel=\"stylesheet\" href=\"styles.css\"><title>All registered students</title></head><body>"
                 + "<div class=\"topnav center\"><a class=\"active\" href=\"/index.html\">Home</a>&nbsp<a href=\"/all-students\">Show Students</a>&nbsp<a href=\"/add-student\">Add Student</a>&nbsp<a href=\"/show-courses-for-student\" >Show Courses for student</a>&nbsp<a href=\"/all-courses\">Show Courses</a>&nbsp<a href=\"/add-courses\">Add Course</a>&nbsp<a href=\"/student-registrations\" class=\"current\">Registration list</a>&nbsp<a href=\"/register-student\">Register student</a>&nbsp</div>"
                 + "<h2>Registration list</h2>"+row+"</body></html>";
         out.println(html);
     }
 
 }
-

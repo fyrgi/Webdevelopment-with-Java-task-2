@@ -19,8 +19,6 @@ public class ShowCourses extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws
             ServletException, IOException {
-        // Mysql connector.getConnector().connect();
-
         String row = "";
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -45,7 +43,7 @@ public class ShowCourses extends HttpServlet {
         }
 
         PrintWriter out = response.getWriter();
-        String html ="<html><head><link rel=\"stylesheet\" href=\"styles.css\"><title>Home page</title></head><body>"
+        String html ="<html><head><link rel=\"stylesheet\" href=\"styles.css\"><title>All courses</title></head><body>"
                 + "<div class=\"topnav center\"><a class=\"active\" href=\"/index.html\">Home</a>&nbsp<a href=\"/all-students\">Show Students</a>&nbsp<a href=\"/add-student\">Add Student</a>&nbsp<a href=\"/show-courses-for-student\" >Show Courses for student</a>&nbsp<a href=\"/all-courses\" class=\"current\">Show Courses</a>&nbsp<a href=\"/add-courses\">Add Course</a>&nbsp<a href=\"/student-registrations\">Registration list</a>&nbsp<a href=\"/register-student\">Register student</a>&nbsp</div>"
                 + "<h2>All Courses</h2>"+row+"</body></html>";
         out.println(html);

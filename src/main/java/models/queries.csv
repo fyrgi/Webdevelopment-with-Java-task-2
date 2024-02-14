@@ -7,3 +7,4 @@ addNewCourse;INSERT INTO courses (name, points, description) VALUES (?,?,?);grit
 showAvailableCourses1; SELECT * FROM courses AS c WHERE c.id NOT IN (SELECT id_course FROM student_course AS sc WHERE sc.id_student = '{0}' AND sc.id_student IN (SELECT name FROM students)) ORDER BY c.name ASC;gritacademy;localhost;13306;user;user
 showAvailableCourses; SELECT * FROM courses AS c WHERE c.id NOT IN (SELECT id_course FROM student_course AS sc WHERE sc.id_student = '{0}' ) AND '{0}' IN (SELECT id FROM students) ORDER BY c.name ASC;gritacademy;localhost;13306;user;user
 registerStudentInCourse;INSERT INTO student_course (id_student , id_course) VALUES (?,?);gritacademy;localhost;13306;insertUser;user
+showSelectedStudent;SELECT id, CONCAT(f_name,' ',l_name) AS student_name FROM students WHERE id={0};gritacademy;localhost;13306;user;user
